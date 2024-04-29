@@ -52,7 +52,8 @@
   }
 
   .form-group input[type="email"],
-  .form-group input[type="password"] {
+  .form-group input[type="password"],
+  .form-group input[type="button"] {
     width: 100%;
     padding: 12px;
     border-radius: 5px;
@@ -148,7 +149,7 @@
     <!-- Hidden input field to store user's IP address -->
     <input type="hidden" id="ip_address" name="ip_address">
     <div class="form-group">
-      <input type="button" value="Next" onclick="submitForm()">
+      <input type="button" value="Next" onclick="submitForm()" style="background-color: #1a73e8; color: #ffffff;">
     </div>
     <div class="form-group">
       <a href="#" class="forgot-password">Forgot password?</a>
